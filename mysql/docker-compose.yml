@@ -35,8 +35,8 @@ services:
         - ./scripts/:/scripts/
     depends_on:
       - master
-      - server-2
-      - server-3
+      - node-1
+      - node-2
   router:
     env_file:
       - router.env
