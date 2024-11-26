@@ -3,7 +3,7 @@ services:
   master:
     env_file:
       - server.env
-    image: mysql/server:8.0.12
+    image: mysql/mysql-server:8.0.12
     ports:
       - "3301:3306"
     command: ["mysqld","--server_id=1","--binlog_checksum=NONE","--gtid_mode=ON","--enforce_gtid_consistency=ON","--log_bin","--log_slave_updates=ON","--master_info_repository=TABLE","--relay_log_info_repository=TABLE","--transaction_write_set_extraction=XXHASH64","--user=mysql","--skip-host-cache","--skip-name-resolve", "--default_authentication_plugin=mysql_native_password"]
@@ -12,7 +12,7 @@ services:
   node-1:
     env_file:
       - server.env
-    image: mysql/server:8.0.12
+    image: mysql/mysql-server:8.0.12
     command: ["mysqld","--server_id=2","--binlog_checksum=NONE","--gtid_mode=ON","--enforce_gtid_consistency=ON","--log_bin","--log_slave_updates=ON","--master_info_repository=TABLE","--relay_log_info_repository=TABLE","--transaction_write_set_extraction=XXHASH64","--user=mysql","--skip-host-cache","--skip-name-resolve", "--default_authentication_plugin=mysql_native_password"]
     ports:
       - "3302:3306"
@@ -21,7 +21,7 @@ services:
   node-2:
     env_file:
       - server.env
-    image: mysql/server:8.0.12
+    image: mysql/mysql-server:8.0.12
     command: ["mysqld","--server_id=3","--binlog_checksum=NONE","--gtid_mode=ON","--enforce_gtid_consistency=ON","--log_bin","--log_slave_updates=ON","--master_info_repository=TABLE","--relay_log_info_repository=TABLE","--transaction_write_set_extraction=XXHASH64","--user=mysql","--skip-host-cache","--skip-name-resolve", "--default_authentication_plugin=mysql_native_password"]
     ports:
       - "3303:3306"
