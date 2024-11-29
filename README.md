@@ -2,7 +2,7 @@
 Mono repo para proyecto de arquitectura 
 
 
-# Mostrar Contenedores de aplicacion Web
+# Mostrar Contenedores de aplicacion Web con balaceador de carga
 
  sudo docker ps -a | grep -E "nginx|react"
  puerto: 8080
