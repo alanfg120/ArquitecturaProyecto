@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6.0 # Especifica la versión de MongoDB que deseas usar
+    container_name: mongodb_container
+    ports:
+      - "27017:27017" # Exponiendo el puerto 27017
+    volumes:
+      - /Escritorio/mongodb:/data/db # Sustituye esta ruta por la ruta en tu sistema
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root # Usuario root inicial
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword123 # Contraseña del usuario root
+
+volumes:
+  dbdata:
+    driver: local
