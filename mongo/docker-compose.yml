@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mongo:
     image: mongo:6.0 # Especifica la versión de MongoDB que deseas usar
-    container_name: mongodb_container
+    container_name: mongodb
     ports:
       - "6451:27017" # Exponiendo el puerto 27017
     volumes:
