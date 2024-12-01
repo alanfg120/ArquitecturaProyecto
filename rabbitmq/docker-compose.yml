@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:4.0-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status"]
+      interval: 5s
+      timeout: 20s
+      retries: 5    
+    volumes:
+      - ./data/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./data/rabbitmq/logs/:/var/log/rabbitmq/
+      - ./scripts/rabbitmq-init:/docker-entrypoint-initdb.d
+    environment:
+      RABBITMQ_QUEUE_NAME_EVA: notify
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_ADMIN_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_ADMIN_PASS}
+
