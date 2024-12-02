@@ -5,7 +5,7 @@ services:
     image: nginx:alpine
     container_name: nginx-load-balancer
     ports:
-      - "8080:80" # El puerto 8080 de tu máquina se redirige al puerto 80 del contenedor NGINX
+      - "6452:80" # El puerto 8080 de tu máquina se redirige al puerto 80 del contenedor NGINX
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro # Montar la configuración personalizada de NGINX
     depends_on:
