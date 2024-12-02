@@ -13,16 +13,14 @@ services:
       - react-app-2
 
   react-app-1:
-    build:
-      context: ./react-app-1
+    image: alanfg120/webapp:latest
     container_name: react-app-1
     ports:
       - "3001:80" # Puerto interno de la app React
     restart: always
 
   react-app-2:
-    build:
-      context: ./react-app-2
+    image: alanfg120/webapp:latest
     container_name: react-app-2
     ports:
       - "3002:80" # Puerto interno de la app React
