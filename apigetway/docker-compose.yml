@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  apigetway:
+    image: alanfg120/apigetway:latest
+    container_name: apigetway
+    ports:
+      - "6453:8080"
+    restart: always
+
+  

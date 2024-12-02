@@ -1,20 +1,20 @@
 # Puertos disponibles
 
-6446 - mysql
-6447 - mysql
-6448 - minio
-6449 - minio
-6450 - portainer
-6451 - mongodb
-6452 - webapp
-6453
-6454
-6455
-6456
-6457
-6458
-6459
-6460
++ 6446 - mysql
++ 6447 - mysql
++ 6448 - minio
++ 6449 - minio
++ 6450 - portainer
++ 6451 - mongodb
++ 6452 - webapp
++ 6453 - apigetway
++ 6454
++ 6455
++ 6456
++ 6457
++ 6458
++ 6459
++ 6460
 
 
 # Mostrar Contenedores de aplicacion Web con balaceador de carga
