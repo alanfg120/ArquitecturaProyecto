@@ -6,8 +6,8 @@
 6449 - minio
 6450 - portainer
 6451 - mongodb
-6452
-6453
+6452 - mongodb
+6453 - mongodb
 6454
 6455
 6456
