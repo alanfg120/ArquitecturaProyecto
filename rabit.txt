@@ -1,0 +1,8 @@
+ url web: http://181.79.9.72:6458
+ user web : admin
+ password web : admin123
+  
+  
+ url colas: http://181.79.9.72:6457
+ user conexion colas:  usuario
+ password colas: usuario123

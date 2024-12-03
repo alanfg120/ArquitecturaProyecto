@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  tuberias:
+    image: alanfg120/tuberias:latest
+    container_name: tuberias
+    restart: always
+
+  
