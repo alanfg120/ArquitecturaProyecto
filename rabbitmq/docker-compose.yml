@@ -4,8 +4,8 @@ services:
     image: rabbitmq:4.0-management-alpine
     container_name: rabbitmq
     ports:
-      - "15672:15672"
-      - "5672:5672"
+      - "6458:15672"
+      - "6457:5672"
     healthcheck:
       test: [ "CMD", "rabbitmqctl", "status"]
       interval: 5s

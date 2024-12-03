@@ -11,8 +11,8 @@
 + 6454 - mongodb
 + 6455 - mongodb
 + 6456 - mongodb
-+ 6457
-+ 6458
++ 6457 - rabitmq 
++ 6458 - rabitmq web
 + 6459
 + 6460
 
