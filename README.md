@@ -8,13 +8,14 @@
 + 6451 - mongodb
 + 6452 - webapp
 + 6453 - apigetway
-+ 6454
-+ 6455
-+ 6456
++ 6454 - mongodb
++ 6455 - mongodb
++ 6456 - mongodb
 + 6457
 + 6458
 + 6459
 + 6460
+
 
 
 # Mostrar Contenedores de aplicacion Web con balaceador de carga
