@@ -17,6 +17,14 @@ services:
       DB_PORT: ${DB_PORT}
       DB_DATABASENAME: ${DB_DATABASENAME}
       DB_ENGINE: ${DB_ENGINE}
+    networks:
+      shared-network:
+        aliases:
+          - tuberias
+networks:
+  shared-network:
+    external: true
+          
 
     
 
