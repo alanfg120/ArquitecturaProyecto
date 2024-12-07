@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: restapi-load-balancer
+    ports:
+      - "6459:80" # El puerto 8080 de tu máquina se redirige al puerto 80 del contenedor NGINX
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Montar la configuración personalizada de NGINX
+    depends_on:
+      - react-app-1
+      - react-app-2
+  rest-api-1:
+    image: alanfg120/restapi:latest
+    container_name: rest-api-1
+    ports:
+      - "3003:8080" # Puerto interno de la app React
+    restart: always
+  rest-api-2:
+    image: alanfg120/restapi:latest
+    container_name: rest-api-1
+    ports:
+      - "3004:8080" # Puerto interno de la app React
+    restart: always
