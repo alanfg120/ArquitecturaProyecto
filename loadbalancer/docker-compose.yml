@@ -13,8 +13,7 @@ services:
       - react-app-2
     networks:
       shared-network:
-        aliases:
-          - nginx
+  
 
   react-app-1:
     image: alanfg120/webapp:latest
