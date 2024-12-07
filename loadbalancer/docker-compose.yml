@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-load-balancer
+    ports:
+      - "6452:80" # El puerto 8080 de tu máquina se redirige al puerto 80 del contenedor NGINX
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Montar la configuración personalizada de NGINX
+    depends_on:
+      - react-app-1
+      - react-app-2
+  react-app-1:
+    image: alanfg120/webapp:latest
+    container_name: react-app-1
+    ports:
+      - "3001:80" # Puerto interno de la app React
+    restart: always
+
+  react-app-2:
+    image: alanfg120/webapp:latest
+    container_name: react-app-2
+    ports:
+      - "3002:80" # Puerto interno de la app React
+    restart: always
