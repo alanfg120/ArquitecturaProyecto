@@ -4,8 +4,6 @@ services:
   tuberias:
     image: alanfg120/tuberias:latest
     container_name: tuberias
-    ports:
-      - "4000:8080"
     environment:
       RABBITMQ_USER: ${RABBITMQ_USER}
       RABBITMQ_PASS: ${RABBITMQ_PASS}
