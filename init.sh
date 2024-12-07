@@ -2,14 +2,14 @@
 
 # Array con las rutas de los archivos docker-compose.yml
 COMPOSE_FILES=(
-    "/apigetway/docker-compose.yml"
-    "/loadbalacer/docker-compose.yml"
-    "/minio/docker-compose.yml"
-    "/minio/docker-compose.yml"
-    "/mongo/docker-compose.yml"
-    "/mysql/docker-compose.yml"
-    "/rabitmq/docker-compose.yml"
-    "/tuberias/docker-compose.yml"
+    "apigetway/docker-compose.yml"
+    "loadbalacer/docker-compose.yml"
+    "minio/docker-compose.yml"
+    "minio/docker-compose.yml"
+    "mongo/docker-compose.yml"
+    "mysql/docker-compose.yml"
+    "rabitmq/docker-compose.yml"
+    "tuberias/docker-compose.yml"
 )
 
 # Función para ejecutar cada archivo docker-compose
