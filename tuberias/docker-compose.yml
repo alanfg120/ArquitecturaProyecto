@@ -19,8 +19,11 @@ services:
       DB_ENGINE: ${DB_ENGINE}
     networks:
       - rabbitmq_default
+      - mysql_default
 networks:
   rabbitmq_default:
+    external: true
+  mysql_default:
     external: true
 
           
