@@ -53,7 +53,7 @@ services:
     networks:
       shared-network:
         aliases:
-          - tuberias
+          - router
 volumes:
   master-data:
   node1-data:

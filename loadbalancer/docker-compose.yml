@@ -14,7 +14,7 @@ services:
     networks:
       shared-network:
         aliases:
-          - tuberias
+          - nginx
 
   react-app-1:
     image: alanfg120/webapp:latest

@@ -4,10 +4,6 @@ var clusterName = "devCluster"
 try {
   print('Setting up InnoDB cluster...\n');
   shell.connect('root@master:3306', dbPass)
-  var cluster = dba.getCluster(clusterName)
-  if(cluster){
-    cluster.dissolve();
-  }
   var cluster = dba.createCluster(clusterName);
   print('Adding instances to the cluster.');
   cluster.addInstance({user: "root", host: "node-1", password: dbPass})

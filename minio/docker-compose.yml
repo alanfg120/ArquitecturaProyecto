@@ -47,7 +47,7 @@ services:
   networks:
       shared-network:
         aliases:
-          - tuberias
+          - mongo
 networks:
   shared-network:
     external: true

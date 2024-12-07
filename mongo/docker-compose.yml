@@ -14,7 +14,7 @@ services:
     networks:
       shared-network:
         aliases:
-          - tuberias
+          - mongo
 volumes:
   dbdata:
     driver: local
