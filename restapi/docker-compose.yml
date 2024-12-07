@@ -17,9 +17,24 @@ services:
     ports:
       - "3003:8080" # Puerto interno de la app React
     restart: always
+    environment:
+      MYSQL_URL: ${MYSQL_URL}
+      MYSQL_USERNAME: ${MYSQL_USERNAME}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - mysql_default
   rest-api-2:
     image: alanfg120/restapi:latest
     container_name: rest-api-2
     ports:
       - "3004:8080" # Puerto interno de la app React
     restart: always
+    environment:
+      MYSQL_URL : ${MYSQL_URL}
+      MYSQL_USERNAME : ${MYSQL_USERNAME}
+      MYSQL_PASSWORD : ${MYSQL_PASSWORD}
+    networks:
+      - mysql_default
+networks:
+  mysql_default:
+    external: true

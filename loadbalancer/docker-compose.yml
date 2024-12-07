@@ -24,3 +24,4 @@ services:
     ports:
       - "3002:80" # Puerto interno de la app React
     restart: always
+
