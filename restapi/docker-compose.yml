@@ -11,6 +11,8 @@ services:
     depends_on:
       - rest-api-1
       - rest-api-2
+    networks:
+      - mysql_default
   rest-api-1:
     image: alanfg120/restapi:latest
     container_name: rest-api-1
