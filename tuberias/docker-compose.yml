@@ -19,6 +19,11 @@ services:
       DB_PORT: ${DB_PORT}
       DB_DATABASENAME: ${DB_DATABASENAME}
       DB_ENGINE: ${DB_ENGINE}
+    networks:
+      - rabbitmq_default
+networks:
+  rabbitmq_default:
+    external: true
 
           
 
