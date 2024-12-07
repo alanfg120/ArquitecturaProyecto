@@ -7,12 +7,5 @@ services:
     ports:
       - "6453:8080"
     restart: always
-    networks:
-      shared-network:
-        aliases:
-          - apigetway
-networks:
-  shared-network:
-    external: true
 
   

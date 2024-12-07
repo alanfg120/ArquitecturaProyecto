@@ -11,10 +11,6 @@ services:
     depends_on:
       - react-app-1
       - react-app-2
-    networks:
-      shared-network:
-  
-
   react-app-1:
     image: alanfg120/webapp:latest
     container_name: react-app-1
@@ -28,6 +24,3 @@ services:
     ports:
       - "3002:80" # Puerto interno de la app React
     restart: always
-networks:
-  shared-network:
-    external: true 

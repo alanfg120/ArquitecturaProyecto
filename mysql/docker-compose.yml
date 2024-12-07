@@ -50,15 +50,9 @@ services:
       - node-2
       - shell
     restart: on-failure
-    networks:
-      shared-network:
-        aliases:
-          - router
 volumes:
   master-data:
   node1-data:
   node2-data:
-networks:
-  shared-network:
-    external: true
+
   

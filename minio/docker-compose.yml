@@ -44,10 +44,3 @@ services:
       "
     volumes:
       - ./data/minio_data:/data
-    networks:
-      shared-network:
-        aliases:
-          - minio
-networks:
-  shared-network:
-    external: true
