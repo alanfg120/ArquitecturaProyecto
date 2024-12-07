@@ -19,7 +19,7 @@ services:
     restart: always
   rest-api-2:
     image: alanfg120/restapi:latest
-    container_name: rest-api-1
+    container_name: rest-api-2
     ports:
       - "3004:8080" # Puerto interno de la app React
     restart: always
