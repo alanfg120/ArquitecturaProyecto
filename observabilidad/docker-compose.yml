@@ -35,7 +35,8 @@ services:
     - '--web.enable-lifecycle'
     networks:
       - "prometheus"
-      - "rabbitmq_prometheus"
+      - "rabbitmq_default"
+      - "mysql_default"
 
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -73,9 +74,25 @@ services:
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
     networks:
-        - "prometheus" 
+        - "prometheus"
+  
+  mysql_exporter:
+    image: prom/mysqld-exporter
+    container_name: mysql_exporter
+    restart: unless-stopped
+    ports:
+    - 9104:9104
+    volumes:
+    - ./mysql_exporter.cnf:/home/user/user_my.cnf
+    environment:
+    - DATA_SOURCE_NAME=root:${MYSQL_ROOT_PASSWORD}@tcp(mysql:3306)/
+    networks:
+    - "prometheus"
+    - "mysql_defult"
     
 networks:
   prometheus:
-  rabbitmq_prometheus:
+  rabbitmq_default:
+    external: true
+  mysql_default:
     external: true
