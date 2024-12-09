@@ -15,8 +15,16 @@ scrape_configs:
     static_configs:
     - targets: ['node_exporter:9100']    
 
-  - job_name: 'app_example'
+  - job_name: 'rabbitmq-server'
     static_configs:
-    - targets: ['app_example:8080'] 
+    - targets: ['rabbitmq:15692'] 
     #metrics_path: '/metrics'
     #metrics_path: '/prometheus'
+
+  # - job_name: 'rabbitmq-exporter'
+  # scrape_interval: 60s
+  # scrape_timeout: 59s
+  # static_configs:
+  #   - targets:
+  #       # docker-compose-dist-tls.yml
+  #       - 'rabbitmq-exporter:9090'

@@ -16,8 +16,13 @@ services:
       - ./data/rabbitmq/logs/:/var/log/rabbitmq/
       - ./scripts/rabbitmq-init:/docker-entrypoint-initdb.d
     environment:
+      RABBITMQ_ERLANG_COOKIE: prometheus
       RABBITMQ_QUEUE_NAME_EVA: notify
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_ADMIN_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_ADMIN_PASS}
+    networks:
+      - "prometheus"
 
 
+networks:
+  prometheus:

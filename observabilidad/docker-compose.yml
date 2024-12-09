@@ -6,13 +6,18 @@ volumes:
 
 services:
   grafana:
-    image: grafana/grafana:8.0.6
+    image: grafana/grafana:8.3.4
     container_name: grafana
     restart: unless-stopped
     volumes:
     - grafana-data:/var/lib/grafana
+    - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/rabbitmq.yaml
+    - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/prometheus.yaml
+    - ./grafana/dashboards:/dashboards
     ports:
     - 3000:3000
+    networks:
+    - "prometheus"
 
   prometheus:
     image: prom/prometheus:v2.28.1
@@ -28,6 +33,9 @@ services:
     - '--storage.tsdb.path=/prometheus'
     - '--storage.tsdb.retention.time=1y'
     - '--web.enable-lifecycle'
+    networks:
+      - "prometheus"
+      - "rabbitmq_prometheus"
 
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -50,7 +58,9 @@ services:
       - '--path.sysfs=/host/sys'
       - --collector.filesystem.ignored-mount-points
       - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
-        
+    networks:
+      - "prometheus"
+
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
@@ -62,12 +72,10 @@ services:
     - /var/run:/var/run:rw
     - /sys:/sys:ro
     - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+        - "prometheus" 
     
-  app_example:
-    image: quay.io/brancz/prometheus-example-app:v0.3.0
-    container_name: app_example
-    restart: unless-stopped
-    ports:
-    - 80:8080
-
-  
+networks:
+  prometheus:
+  rabbitmq_prometheus:
+    external: true
