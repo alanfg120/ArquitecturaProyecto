@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  console:
+    image: alanfg120/console:latest
+    container_name: apigetway
+    ports:
+      - "6460:12345"
+    environment:
+      RABBIT_USER: ${RABBIT_USER}
+      RABBIT_PASSWORD: ${RABBIT_PASSWORD}
+      RABBIT_HOST: ${RABBIT_HOST}
+      RABBIT_PORT: ${RABBIT_PORT}
+      MYSQL_URL: ${MYSQL_URL}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      PORT: ${PORT}
+    restart: always
+    networks:
+      - rabbitmq_default
+      - mysql_default
+networks:
+  rabbitmq_default:
+    external: true
+  mysql_default:
+    external: true
+
+  
