@@ -11,7 +11,8 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root # Usuario root inicial
       MONGO_INITDB_ROOT_PASSWORD: rootpassword123 # Contraseña del usuario root
-
 volumes:
   dbdata:
     driver: local
+
+

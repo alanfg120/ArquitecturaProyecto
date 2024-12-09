@@ -15,8 +15,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./data/minio_data:/data
-    command: server /data --console-address ":9001"
-  
+    command: server /data --console-address ":9001"  
   mc:
     image: minio/mc:RELEASE.2024-11-17T19-35-25Z-cpuv1
     container_name: minio_mc

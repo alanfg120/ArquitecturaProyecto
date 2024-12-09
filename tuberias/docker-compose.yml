@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  tuberias:
+    image: alanfg120/tuberias:latest
+    container_name: tuberias
+    environment:
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASS: ${RABBITMQ_PASS}
+      RABBITMQ_HOST: ${RABBITMQ_HOST}
+      RABBITMQ_PORT: ${RABBITMQ_PORT}
+      RABBITMQ_QUEUE_NAME_FILES: ${RABBITMQ_QUEUE_NAME_FILES}
+      BROKER_NAME: ${BROKER_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASENAME: ${DB_DATABASENAME}
+      DB_ENGINE: ${DB_ENGINE}
+    networks:
+      - rabbitmq_default
+      - mysql_default
+networks:
+  rabbitmq_default:
+    external: true
+  mysql_default:
+    external: true
+
+          
+
+    
+
+  

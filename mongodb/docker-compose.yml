@@ -1,0 +1,77 @@
+version: "3.8"
+services:
+  mongodb-master:
+    image: mongo:8.0
+    hostname: mongodb-master
+    container_name: mongodb-master
+    user: "1000:1000"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - GLIBC_TUNABLES=glibc.pthread.rseq=0  
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongodb-master:/data/db
+      - ./scripts/replica.key:/data/configdb/keyfile
+    entrypoint: ["mongod", "--replSet", "myReplicaSet", "--auth", "--bind_ip_all", "--keyFile", "/data/configdb/keyfile"]
+    networks:
+      - internal-network
+
+  mongodb-node2:
+    image: mongo:8.0
+    container_name: mongodb-node2
+    hostname: mongodb-node2
+    user: "1000:1000"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - GLIBC_TUNABLES=glibc.pthread.rseq=0
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./data/mongodb-node2:/data/db
+      - ./scripts/replica.key:/data/configdb/keyfile
+    entrypoint: ["mongod", "--replSet", "myReplicaSet", "--auth", "--bind_ip_all", "--keyFile", "/data/configdb/keyfile"]
+    networks:
+      - internal-network
+
+  mongodb-node3:
+    image: mongo:8.0
+    container_name: mongodb-node3
+    hostname: mongodb-node3
+    user: "1000:1000"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+      - GLIBC_TUNABLES=glibc.pthread.rseq=0   
+    ports:
+      - "27019:27017"
+    volumes:
+      - ./data/mongodb-node3:/data/db
+      - ./scripts/replica.key:/data/configdb/keyfile
+    entrypoint: ["mongod", "--replSet", "myReplicaSet", "--auth", "--bind_ip_all", "--keyFile", "/data/configdb/keyfile"]
+    networks:
+      - internal-network
+
+  mongo-init-replica:
+    image: mongo:8.0
+    container_name: mongo-init-replica
+    depends_on:
+      - mongodb-master
+      - mongodb-node2
+      - mongodb-node3
+    volumes:
+      - ./scripts:/scripts
+    restart: "no"
+    entrypoint: [ "bash", "/scripts/mongo_setup.sh"]
+    networks:
+      - internal-network
+
+networks:
+  internal-network:
+    driver: bridge
+
