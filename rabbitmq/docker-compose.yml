@@ -20,9 +20,3 @@ services:
       RABBITMQ_QUEUE_NAME_EVA: notify
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_ADMIN_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_ADMIN_PASS}
-    networks:
-      - "prometheus"
-
-
-networks:
-  prometheus:
