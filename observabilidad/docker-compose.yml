@@ -6,9 +6,11 @@ volumes:
 
 services:
   grafana:
-    image: grafana/grafana:8.3.4
+    image: grafana/grafana:11.3.0
     container_name: grafana
     restart: unless-stopped
+    environment:
+     - GF_INSTALL_PLUGINS=grafana-lokiexplore-app
     volumes:
     - grafana-data:/var/lib/grafana
     - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/rabbitmq.yaml
@@ -83,12 +85,34 @@ services:
     ports:
     - 9104:9104
     volumes:
-    - ./mysql_exporter.cnf:/home/user/user_my.cnf
+    - ./mysql_exporter.cnf:/.my.cnf
     environment:
     - DATA_SOURCE_NAME=root:${MYSQL_ROOT_PASSWORD}@tcp(mysql:3306)/
     networks:
     - "prometheus"
-    - "mysql_defult"
+    - "mysql_default"
+
+  loki:
+    image: grafana/loki:3.2.1
+    container_name: loki
+    restart: unless-stopped
+    volumes:
+      - ./loki-config.yaml:/etc/loki/loki-config.yaml
+    ports:
+    - 3100:3100
+    networks:
+    - "prometheus"
+
+  promtail:
+    image: grafana/promtail:3.2.1
+    container_name: promtail
+    restart: unless-stopped
+    volumes:
+      - /var/log:/var/log:ro
+      - ./promtail-config.yaml:/etc/promtail/promtail-config.yaml
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+    - "prometheus"
     
 networks:
   prometheus:
