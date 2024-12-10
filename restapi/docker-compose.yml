@@ -41,6 +41,8 @@ services:
       - mysql_default
       - restapi_default
 networks:
+  restapi_default:
+    external: false
   mysql_default:
     external: true
-  restapi_default:
+
