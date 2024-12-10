@@ -38,7 +38,13 @@ scrape_configs:
         # The mysqld_exporter host:port
         replacement: mysql_exporter:9104
   
-  - job_name: app
+  - job_name: restapi
     scrape_interval: 5s
     static_configs:
     - targets: ['nginx-prometheus-exporter:9113']
+    
+  - job_name: 'apigateway'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s # This can be adjusted based on our needs
+    static_configs:
+    - targets: ['apigetway:8080']

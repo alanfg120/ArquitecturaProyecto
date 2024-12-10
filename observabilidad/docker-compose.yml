@@ -125,6 +125,7 @@ services:
     networks:
       - restapi_restapi_default
       - prometheus
+      - apigetway_default
     depends_on:
       - prometheus
   
@@ -133,6 +134,8 @@ networks:
   rabbitmq_default:
     external: true
   mysql_default:
+    external: true
+  apigetway_default:
     external: true
   restapi_restapi_default:
     external: true
