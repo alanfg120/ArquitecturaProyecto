@@ -7,5 +7,10 @@ services:
     ports:
       - "6453:8080"
     restart: always
+    networks:
+      - restapi_restapi
+networks:
+  restapi_restapi:
+    external: true
 
   
