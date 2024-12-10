@@ -39,8 +39,8 @@ services:
       MYSQL_PASSWORD : ${MYSQL_PASSWORD}
     networks:
       - mysql_default
-      - restapi
+      - restapi_default
 networks:
   mysql_default:
     external: true
-  restapi:
+  restapi_default:
