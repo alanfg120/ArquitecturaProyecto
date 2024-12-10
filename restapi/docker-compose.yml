@@ -13,7 +13,7 @@ services:
       - rest-api-2
     networks:
       - mysql_default
-      - restapi_default
+      - restapi
   rest-api-1:
     image: alanfg120/restapi:latest
     container_name: rest-api-1
@@ -26,7 +26,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - mysql_default
-      - restapi_default
+      - restapi
   rest-api-2:
     image: alanfg120/restapi:latest
     container_name: rest-api-2
@@ -39,9 +39,8 @@ services:
       MYSQL_PASSWORD : ${MYSQL_PASSWORD}
     networks:
       - mysql_default
-      - restapi_default
+      - restapi
 networks:
   mysql_default:
     external: true
-  restapi_default:
-    external: true
+  restapi:
