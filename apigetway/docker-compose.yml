@@ -8,9 +8,9 @@ services:
       - "6453:8080"
     restart: always
     networks:
-      - restapi_restapi
+      - restapi
 networks:
-  restapi_restapi:
+  restapi:
     external: true
 
   
