@@ -17,13 +17,22 @@ services:
       DB_PORT: ${DB_PORT}
       DB_DATABASENAME: ${DB_DATABASENAME}
       DB_ENGINE: ${DB_ENGINE}
+      NOSQL_DB_USER: ${NOSQL_DB_USER}
+      NOSQL_DB_PASSWORD: ${NOSQL_DB_PASSWORD}
+      NOSQL_DB_HOST: ${NOSQL_DB_HOST}
+      NOSQL_DB_PORT: ${NOSQL_DB_PORT}
+      NOSQL_DB_DATABASE: ${NOSQL_DB_DATABASE}
+      NOSQL_NAME: ${NOSQL_NAME}
     networks:
       - rabbitmq_default
       - mysql_default
+      - mongo_default
 networks:
   rabbitmq_default:
     external: true
   mysql_default:
+    external: true
+  mongo_default:
     external: true
 
           
