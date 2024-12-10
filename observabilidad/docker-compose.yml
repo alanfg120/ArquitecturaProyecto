@@ -114,9 +114,25 @@ services:
     networks:
     - "prometheus"
     
+  nginx-prometheus-exporter:
+    image: nginx/nginx-prometheus-exporter:1.0
+    container_name: prometheus-nginx-exporter
+    restart: always
+    command:
+      - -nginx.scrape-uri=http://nginx/stub_status
+    expose: 
+      - 9113
+    networks:
+      - restapi_restapi
+      - prometheus
+    depends_on:
+      - prometheus
+  
 networks:
   prometheus:
   rabbitmq_default:
     external: true
   mysql_default:
+    external: true
+  restapi_restapi:
     external: true

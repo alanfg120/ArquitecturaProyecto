@@ -37,3 +37,8 @@ scrape_configs:
       - target_label: __address__
         # The mysqld_exporter host:port
         replacement: mysql_exporter:9104
+  
+  - job_name: app
+    scrape_interval: 5s
+    static_configs:
+    - targets: ['nginx-prometheus-exporter:9113']
