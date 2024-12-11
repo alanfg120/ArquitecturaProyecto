@@ -23,16 +23,22 @@ services:
       NOSQL_DB_PORT: ${NOSQL_DB_PORT}
       NOSQL_DB_DATABASE: ${NOSQL_DB_DATABASE}
       NOSQL_NAME: ${NOSQL_NAME}
+      MINIO_ENDPOINT: ${DB_PORT_WRITE}
+      MINIO_ACCESKEY: ${MINIO_ACCESKEY}
+      MINIO_SECRETKEY: ${MINIO_SECRETKEY}
     networks:
       - rabbitmq_default
       - mysql_default
       - mongo_default
+      - minio_default
 networks:
   rabbitmq_default:
     external: true
   mysql_default:
     external: true
   mongo_default:
+    external: true
+  minio_default:
     external: true
 
           
