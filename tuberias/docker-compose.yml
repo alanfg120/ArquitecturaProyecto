@@ -26,6 +26,7 @@ services:
       MINIO_ENDPOINT: ${MINIO_ENDPOINT}
       MINIO_ACCESKEY: ${MINIO_ACCESKEY}
       MINIO_SECRETKEY: ${MINIO_SECRETKEY}
+      DB_PORT_WRITE: ${DB_PORT_WRITE}
     networks:
       - rabbitmq_default
       - mysql_default
