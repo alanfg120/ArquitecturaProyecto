@@ -11,6 +11,7 @@ services:
       MYSQL_URL : ${MYSQL_URL}
       MYSQL_USER : ${MYSQL_USER}
       MYSQL_PASSWORD : ${MYSQL_PASSWORD}
+      SECRET_TOKEN : ${SECRET_TOKEN}
     networks:
       - mysql_default
 networks:
