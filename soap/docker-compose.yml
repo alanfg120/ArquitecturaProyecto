@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  apigetway:
+    image: alanfg120/soap:latest
+    container_name: soap
+    ports:
+      - "3001:8080"
+    restart: always
+    networks:
+      - soap_default
+
+
+  

@@ -40,9 +40,13 @@ services:
     networks:
       - mysql_default
       - restapi_default
+      - soap_default
 networks:
   restapi_default:
     external: false
   mysql_default:
     external: true
+  soap_default:
+    external: true
+  
 
