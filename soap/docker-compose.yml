@@ -9,8 +9,8 @@ services:
     restart: always
     environment:
       MYSQL_URL : ${MYSQL_URL}
-      MYSQL_USERNAME : ${MYSQL_USERNAME}
-      MYSQL_PASSWORD : ${MYSQL_USERNAME}
+      MYSQL_USER : ${MYSQL_USERNAME}
+      MYSQL_PASSWORD : ${MYSQL_PASSWORD}
     networks:
       - mysql_default
 networks:
