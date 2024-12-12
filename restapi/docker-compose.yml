@@ -27,6 +27,7 @@ services:
     networks:
       - mysql_default
       - restapi_default
+      - soap_default
   rest-api-2:
     image: alanfg120/restapi:latest
     container_name: rest-api-2
