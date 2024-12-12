@@ -24,6 +24,8 @@ services:
       MYSQL_URL: ${MYSQL_URL}
       MYSQL_USERNAME: ${MYSQL_USERNAME}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      AUTH_URL_SOAP: ${AUTH_URL_SOAP}
+      FILES_URL_SOAP: ${FILES_URL_SOAP}
     networks:
       - mysql_default
       - restapi_default
@@ -38,6 +40,8 @@ services:
       MYSQL_URL : ${MYSQL_URL}
       MYSQL_USERNAME : ${MYSQL_USERNAME}
       MYSQL_PASSWORD : ${MYSQL_PASSWORD}
+      AUTH_URL_SOAP: ${AUTH_URL_SOAP}
+      FILES_URL_SOAP: ${FILES_URL_SOAP}
     networks:
       - mysql_default
       - restapi_default
