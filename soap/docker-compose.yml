@@ -9,6 +9,8 @@ services:
     restart: always
     networks:
       - soap_default
+networks:
+   soap_default:
 
 
   
