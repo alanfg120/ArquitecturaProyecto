@@ -24,9 +24,12 @@ services:
       MYSQL_URL: ${MYSQL_URL}
       MYSQL_USERNAME: ${MYSQL_USERNAME}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      AUTH_URL_SOAP: ${AUTH_URL_SOAP}
+      FILES_URL_SOAP: ${FILES_URL_SOAP}
     networks:
       - mysql_default
       - restapi_default
+      - soap_default
   rest-api-2:
     image: alanfg120/restapi:latest
     container_name: rest-api-2
@@ -37,12 +40,18 @@ services:
       MYSQL_URL : ${MYSQL_URL}
       MYSQL_USERNAME : ${MYSQL_USERNAME}
       MYSQL_PASSWORD : ${MYSQL_PASSWORD}
+      AUTH_URL_SOAP: ${AUTH_URL_SOAP}
+      FILES_URL_SOAP: ${FILES_URL_SOAP}
     networks:
       - mysql_default
       - restapi_default
+      - soap_default
 networks:
   restapi_default:
     external: false
   mysql_default:
     external: true
+  soap_default:
+    external: true
+  
 
