@@ -14,6 +14,7 @@ services:
       MYSQL_URL: ${MYSQL_URL}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      RABBIT_QUEUE: ${RABBIT_QUEUE}
       PORT: ${PORT}
     restart: always
     networks:
