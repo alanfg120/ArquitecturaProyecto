@@ -38,7 +38,7 @@ services:
     networks:
       - "prometheus"
       - "rabbitmq_default"
-      - "apigetway_default"
+      - "restapi_restapi_default"
       - "mysql_default"
 
   node_exporter:
