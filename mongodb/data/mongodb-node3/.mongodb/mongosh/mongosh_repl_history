@@ -1,0 +1,9 @@
+})
+    "año" : 1966 
+    "autor" : "The Beatles",
+    "nombre" : "Revolver",
+db.albumes.insertOne({
+db.albumes.findOne()
+{ "_id" : ObjectId("5f856f714f02f31ac68acf3e"), "nombre" : "Revolver", "autor" : "The Beatles", "año" : 1966 }db.albumes.findOne()
+{ "_id" : ObjectId("5f856f714f02f31ac68acf3e"), "nombre" : "Revolver", "autor" : "The Beatles", "año" : 1966 } db.albumes.findOne()
+ db.albumes.findOne()

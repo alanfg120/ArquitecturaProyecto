@@ -19,3 +19,4 @@ services:
       - ./scripts/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro   
     
 
+

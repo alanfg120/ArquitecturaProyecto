@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: restapi-load-balancer
+    ports:
+      - "6459:80" # El puerto 8080 de tu máquina se redirige al puerto 80 del contenedor NGINX
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Montar la configuración personalizada de NGINX
+    depends_on:
+      - rest-api-1
+      - rest-api-2
+    networks:
+      - mysql_default
+      - restapi_default
+  rest-api-1:
+    image: alanfg120/restapi:latest
+    container_name: rest-api-1
+    ports:
+      - "3003:8080" # Puerto interno de la app React
+    restart: always
+    environment:
+      MYSQL_URL: ${MYSQL_URL}
+      MYSQL_USERNAME: ${MYSQL_USERNAME}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      AUTH_URL_SOAP: ${AUTH_URL_SOAP}
+      FILES_URL_SOAP: ${FILES_URL_SOAP}
+    networks:
+      - mysql_default
+      - restapi_default
+      - soap_default
+  rest-api-2:
+    image: alanfg120/restapi:latest
+    container_name: rest-api-2
+    ports:
+      - "3004:8080" # Puerto interno de la app React
+    restart: always
+    environment:
+      MYSQL_URL : ${MYSQL_URL}
+      MYSQL_USERNAME : ${MYSQL_USERNAME}
+      MYSQL_PASSWORD : ${MYSQL_PASSWORD}
+      AUTH_URL_SOAP: ${AUTH_URL_SOAP}
+      FILES_URL_SOAP: ${FILES_URL_SOAP}
+    networks:
+      - mysql_default
+      - restapi_default
+      - soap_default
+networks:
+  restapi_default:
+    external: false
+  mysql_default:
+    external: true
+  soap_default:
+    external: true
+  
+

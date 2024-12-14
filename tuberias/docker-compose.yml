@@ -4,6 +4,46 @@ services:
   tuberias:
     image: alanfg120/tuberias:latest
     container_name: tuberias
+    environment:
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASS: ${RABBITMQ_PASS}
+      RABBITMQ_HOST: ${RABBITMQ_HOST}
+      RABBITMQ_PORT: ${RABBITMQ_PORT}
+      RABBITMQ_QUEUE_NAME_FILES: ${RABBITMQ_QUEUE_NAME_FILES}
+      BROKER_NAME: ${BROKER_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASENAME: ${DB_DATABASENAME}
+      DB_ENGINE: ${DB_ENGINE}
+      NOSQL_DB_USER: ${NOSQL_DB_USER}
+      NOSQL_DB_PASSWORD: ${NOSQL_DB_PASSWORD}
+      NOSQL_DB_HOST: ${NOSQL_DB_HOST}
+      NOSQL_DB_PORT: ${NOSQL_DB_PORT}
+      NOSQL_DB_DATABASE: ${NOSQL_DB_DATABASE}
+      NOSQL_NAME: ${NOSQL_NAME}
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT}
+      MINIO_ACCESKEY: ${MINIO_ACCESKEY}
+      MINIO_SECRETKEY: ${MINIO_SECRETKEY}
+      DB_PORT_WRITE: ${DB_PORT_WRITE}
+    networks:
+      - rabbitmq_default
+      - mysql_default
+      - mongo_default
+      - minio_default
+networks:
+  rabbitmq_default:
+    external: true
+  mysql_default:
+    external: true
+  mongo_default:
+    external: true
+  minio_default:
+    external: true
+
+          
+
     
 
   

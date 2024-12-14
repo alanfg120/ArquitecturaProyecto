@@ -1,0 +1,142 @@
+version: "3.7"
+
+volumes:
+  grafana-data:
+  prometheus-data:    
+
+services:
+  grafana:
+    image: grafana/grafana:11.3.0
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+     - GF_INSTALL_PLUGINS=grafana-lokiexplore-app
+    volumes:
+    - grafana-data:/var/lib/grafana
+    - ./grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/rabbitmq.yaml
+    - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/prometheus.yaml
+    - ./grafana/dashboards:/dashboards
+    ports:
+    - 3000:3000
+    networks:
+    - "prometheus"
+
+  prometheus:
+    image: prom/prometheus:v2.28.1
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    - prometheus-data:/prometheus
+    ports:
+    - 9090:9090
+    command:
+    - '--config.file=/etc/prometheus/prometheus.yml'
+    - '--storage.tsdb.path=/prometheus'
+    - '--storage.tsdb.retention.time=1y'
+    - '--web.enable-lifecycle'
+    networks:
+      - "prometheus"
+      - "rabbitmq_default"
+      - "restapi_restapi_default"
+      - "mysql_default"
+
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    restart: unless-stopped
+    ports:
+    - 9100:9100
+    ###### linux
+    # command:
+    # - '--path.rootfs=/host'
+    # pid: host
+    # volumes:
+    # - '/:/host:ro,rslave'
+    ###### windows
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+    command: 
+      - '--path.procfs=/host/proc' 
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+    networks:
+      - "prometheus"
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    expose:
+    - 8080
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+        - "prometheus"
+  
+  mysql_exporter:
+    image: prom/mysqld-exporter
+    container_name: mysql_exporter
+    restart: unless-stopped
+    ports:
+    - 9104:9104
+    volumes:
+    - ./mysql_exporter.cnf:/.my.cnf
+    environment:
+    - DATA_SOURCE_NAME=root:${MYSQL_ROOT_PASSWORD}@tcp(mysql:3306)/
+    networks:
+    - "prometheus"
+    - "mysql_default"
+
+  loki:
+    image: grafana/loki:3.2.1
+    container_name: loki
+    restart: unless-stopped
+    volumes:
+      - ./loki-config.yaml:/etc/loki/loki-config.yaml
+    ports:
+    - 3100:3100
+    networks:
+    - "prometheus"
+
+  promtail:
+    image: grafana/promtail:3.2.1
+    container_name: promtail
+    restart: unless-stopped
+    volumes:
+      - /var/log:/var/log:ro
+      - ./promtail-config.yaml:/etc/promtail/promtail-config.yaml
+    command: -config.file=/etc/promtail/promtail-config.yaml
+    networks:
+    - "prometheus"
+    
+  nginx-prometheus-exporter:
+    image: nginx/nginx-prometheus-exporter:1.0
+    container_name: prometheus-nginx-exporter
+    restart: always
+    command:
+      - -nginx.scrape-uri=http://nginx/stub_status
+    expose: 
+      - 9113
+    networks:
+      - restapi_restapi_default
+      - prometheus
+      - apigetway_default
+    depends_on:
+      - prometheus
+  
+networks:
+  prometheus:
+  rabbitmq_default:
+    external: true
+  mysql_default:
+    external: true
+  apigetway_default:
+    external: true
+  restapi_restapi_default:
+    external: true
