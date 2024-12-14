@@ -1,7 +1,7 @@
-version: '3.8'
 services:
   rabbitmq:
     image: rabbitmq:4.0-management-alpine
+    restart: unless-stopped
     container_name: rabbitmq
     ports:
       - "6458:15672"
@@ -14,9 +14,8 @@ services:
     volumes:
       - ./data/rabbitmq/data/:/var/lib/rabbitmq/
       - ./data/rabbitmq/logs/:/var/log/rabbitmq/
-      - ./scripts/rabbitmq-init:/docker-entrypoint-initdb.d
-    environment:
-      RABBITMQ_QUEUE_NAME_EVA: notify
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_ADMIN_USER}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_ADMIN_PASS}
+      - ./data/rabbitmq/logs:/var/tmp/rabbitmq-tracing
+      - ./scripts/rabbit_definitions.json:/opt/definitions.json:ro
+      - ./scripts/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro   
+    
 

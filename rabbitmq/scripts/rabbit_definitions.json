@@ -1,0 +1,58 @@
+{
+   "rabbit_version": "4.0",
+   "users": [
+     {
+       "name": "admin",
+       "password_hash": "8TGSEfw71dssB3ZRdaZLZSavGJwGWYJL8+YnWiecumbopoUb",
+       "hashing_algorithm": "rabbit_password_hashing_sha256",
+       "tags": "administrator"
+     },
+     {
+       "name": "usuario",
+       "password_hash": "W33VSkvvEvu5YGXJILjX89QhlEmS5pn9BjXi3pY0Ud8IvOEB",
+       "hashing_algorithm": "rabbit_password_hashing_sha256",
+       "tags": "user"
+     }
+   ],
+   "vhosts": [
+     {
+       "name": "/"
+     }
+   ],
+   "permissions": [
+     {
+       "user": "usuario",
+       "vhost": "/",
+       "configure": "^fileToProcess$",
+       "write": "^fileToProcess$",
+       "read": "^fileToProcess$"
+     },
+     {
+       "user": "admin",
+       "vhost": "/",
+       "configure": ".*",
+       "write": ".*",
+       "read": ".*"
+     }
+   ],
+   "parameters": [],
+   "policies": [],
+   "queues": [
+     {
+       "name": "fileToProcess",
+       "vhost": "/",
+       "durable": true,
+       "auto_delete": false,
+       "arguments": {
+         "x-queue-type": "quorum"
+       }
+     }
+   ],
+   "exchanges": [
+
+   ],
+   "bindings": [
+     
+   ]
+ }
+ 
