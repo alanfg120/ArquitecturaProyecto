@@ -1,0 +1,9 @@
+db.albumes.findOne()
+db.albumes.insertOne({ "nombre": "Revolver", "autor": "The Beatles", "año": 1966 })
+ls
+test.albumes.insertOne({ "nombre": "Revolver", "autor": "The Beatles", "año": 1966 })
+    "año" : 1966 
+    "autor" : "The Beatles",
+    "nombre" : "Revolver",
+db.albumes.insertOne({
+show collections

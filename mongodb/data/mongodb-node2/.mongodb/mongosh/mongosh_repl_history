@@ -1,0 +1,6 @@
+})
+    "año" : 1966 
+    "autor" : "The Beatles",
+    "nombre" : "Revolver",
+db.albumes.insertOne({
+db.albumes.findOne()
