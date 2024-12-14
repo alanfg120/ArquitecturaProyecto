@@ -10,7 +10,7 @@ services:
       - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
       - GLIBC_TUNABLES=glibc.pthread.rseq=0  
     ports:
-      - "27017:27017"
+      - "6454:27017"
     volumes:
       - ./data/mongodb-master:/data/db
       
@@ -29,7 +29,7 @@ services:
       - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
       - GLIBC_TUNABLES=glibc.pthread.rseq=0
     ports:
-      - "27018:27017"
+      - "6455:27017"
     volumes:
       - ./data/mongodb-node2:/data/db
       
@@ -48,7 +48,7 @@ services:
       - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
       - GLIBC_TUNABLES=glibc.pthread.rseq=0   
     ports:
-      - "27019:27017"
+      - "6456:27017"
     volumes:
       - ./data/mongodb-node3:/data/db      
     entrypoint: ["mongod", "--replSet", "myReplicaSet", "--bind_ip_all"]
